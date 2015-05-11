@@ -59,3 +59,4 @@ For more information on how to get or use the allocation instrumenter, see [Gett
 [latest release]: https://github.com/google/allocation-instrumenter/releases/tag/java-allocation-instrumenter-3.0
 [Maven Central]: http://search.maven.org/#artifactdetails%7Ccom.google.code.java-allocation-instrumenter%7Cjava-allocation-instrumenter%7C3.0%7Cjar
 [Getting Started]: https://github.com/google/allocation-instrumenter/wiki
+[java-allocation-instrumenter]: https://github.com/google/allocation-instrumenter
