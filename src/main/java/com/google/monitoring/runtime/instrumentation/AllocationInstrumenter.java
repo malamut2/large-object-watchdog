@@ -16,10 +16,6 @@
 
 package com.google.monitoring.runtime.instrumentation;
 
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
-
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
@@ -29,6 +25,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.ClassWriter;
 
 /**
  * Instruments bytecodes that allocate heap memory to call a recording hook.
@@ -40,6 +40,7 @@ import java.util.logging.Logger;
  * @author Jeremy Manson
  */
 public class AllocationInstrumenter implements ClassFileTransformer {
+
    static final Logger logger =
        Logger.getLogger(AllocationInstrumenter.class.getName());
 
@@ -111,6 +112,13 @@ public class AllocationInstrumenter implements ClassFileTransformer {
     // When "subclassesAlso" is specified, samplers are also invoked when
     // SubclassOfA.<init> is called while only class A is specified to be
     // instrumented.
+
+    for (String arg : args) {
+      if (arg.startsWith("limit=")) {
+        AllocationRecorder.setWatchdogThreshold(arg.substring(6));
+      }
+    }
+
     ConstructorInstrumenter.subclassesAlso = args.contains("subclassesAlso");
     inst.addTransformer(new ConstructorInstrumenter(),
         inst.isRetransformClassesSupported());

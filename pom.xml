@@ -200,26 +200,8 @@
                 <include>com.google.guava:guava</include>
               </includes>
               <rules>
-                <rule>
-                  <pattern>org.objectweb.asm.**</pattern>
-                  <result>com.google.monitoring.runtime.instrumentation.asm.@1</result>
-                </rule>
-                <rule>
-                  <pattern>com.google.common.**</pattern>
-                  <result>com.google.monitoring.runtime.instrumentation.common.@0</result>
-                </rule>
                 <keep>
-                  <pattern>com.google.monitoring.runtime.instrumentation.common.collect.ComputingCache</pattern>
-                  <pattern>com.google.monitoring.runtime.instrumentation.common.collect.ComputingConcurrentHashMap</pattern>
-                  <pattern>com.google.monitoring.runtime.instrumentation.common.collect.ForwardingMap</pattern>
-                  <pattern>com.google.monitoring.runtime.instrumentation.common.collect.MapMaker</pattern>
-                  <pattern>com.google.monitoring.runtime.instrumentation.common.base.FunctionalEquivalence</pattern>
-                  <pattern>com.google.monitoring.runtime.instrumentation.common.base.PairwiseEquivalence</pattern>
-                  <pattern>com.google.monitoring.runtime.instrumentation.common.base.Supplier</pattern>
-                  <pattern>com.google.monitoring.runtime.instrumentation.common.base.Suppliers</pattern>
-                  <pattern>com.google.monitoring.runtime.instrumentation.common.primitives.Ints</pattern>
-                  <pattern>com.google.monitoring.runtime.instrumentation.asm.**</pattern>
-                  <pattern>com.google.monitoring.runtime.instrumentation.*</pattern>
+                  <pattern>*.**</pattern>
                </keep>
               </rules>
             </configuration>
