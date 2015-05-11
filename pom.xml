@@ -18,6 +18,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.sonatype.oss</groupId>
@@ -25,28 +26,22 @@
     <version>7</version>
   </parent>
 
-  <groupId>com.google.code.java-allocation-instrumenter</groupId>
-  <artifactId>java-allocation-instrumenter</artifactId>
+  <groupId>com.github.malamut2</groupId>
+  <artifactId>large-object-watchdog</artifactId>
   <packaging>jar</packaging>
-  <version>3.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
 
-  <name>java-allocation-instrumenter</name>
+  <name>large-object-watchdog</name>
   <description>
-    A Java agent that rewrites bytecode to instrument allocation sites.
+      A Java agent which traces creation of all objects whose net size cross a given threshold.
   </description>
 
-  <inceptionYear>2009</inceptionYear>
-  <url>https://github.com/google/allocation-instrumenter/</url>
-
-  <organization>
-    <name>Google, Inc.</name>
-    <url>http://www.google.com</url>
-  </organization>
+  <inceptionYear>2015</inceptionYear>
+  <url>https://github.com/malamut2/large-object-watchdog/</url>
 
   <developers>
     <developer>
-      <name>Jeremy Manson</name>
-      <organization>Google Inc.</organization>
+      <name>Wolfgang Kronberg</name>
     </developer>
   </developers>
 
@@ -59,16 +54,10 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:https://github.com/google/allocation-instrumenter.git</connection>
-    <developerConnection>scm:git:git@github.com:google/allocation-instrumenter.git
-    </developerConnection>
-    <url>https://github.com/google/allocation-instrumenter/</url>
+    <connection>scm:git:https://github.com/malamut2/large-object-watchdog.git</connection>
+    <developerConnection>scm:git:git@github.com:malamut2/large-object-watchdog.git</developerConnection>
+    <url>https://github.com/malamut2/large-object-watchdog/</url>
   </scm>
-
-  <issueManagement>
-    <system>Google Code Issue Tracking</system>
-    <url>http://code.google.com/p/java-allocation-instrumenter/issues/list</url>
-  </issueManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -1,3 +1,9 @@
+The Large Object Watchdog is a Java agent which traces creation of all objects whose net size
+cross a given threshold. It has been forked from [java-allocation-instrumenter].
+
+This project is work-in-progress. For now, I leave the original Allocation Instrumenter Readme
+message intact. It follows here:
+
 The Allocation Instrumenter is a Java agent written using the [java.lang.instrument][] API and
 [ASM][]. Each allocation in your Java program is instrumented; a user-defined callback is invoked
 on each allocation.
