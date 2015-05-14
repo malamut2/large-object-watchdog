@@ -1,8 +1,9 @@
 
 ## What is this?
 
-The Large Object Watchdog is a Java agent which traces creation of all objects whose net size
-cross a given threshold. It has been forked from [java-allocation-instrumenter], which in turn
+The Large Object Watchdog is a Java agent which traces creation of all large objects.
+'Large' means there that their system-dependent net size crosses a given threshold.
+The Larget Object Watchdog has been forked from [java-allocation-instrumenter], which in turn
 uses [java.lang.instrument] with [ASM].
 
 Compared to [java-allocation-instrumenter], which offers a very general method to trace all sorts
