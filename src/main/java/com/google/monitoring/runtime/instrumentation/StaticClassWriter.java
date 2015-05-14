@@ -38,13 +38,13 @@
 
 package com.google.monitoring.runtime.instrumentation;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
-
-import java.io.InputStream;
-import java.io.IOException;
 
 /**
  * A {@link ClassWriter} that looks for static class data in the
@@ -172,6 +172,7 @@ class StaticClassWriter extends ClassWriter {
           try {
             is.close();
           } catch (Exception e) {
+            // don't worry if closing an input stream fails
           }
         }
       }

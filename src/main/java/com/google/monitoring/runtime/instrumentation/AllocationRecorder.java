@@ -62,10 +62,7 @@ public class AllocationRecorder {
     private static final Sampler sampler= new WatchdogSampler();
 
     // Used for reentrancy checks
-    private static final ThreadLocal<Boolean> recordingAllocation = new ThreadLocal<Boolean>();
-
-    public static void recordAllocation(Class<?> clazz, Object newObj) {
-    }
+    private static final ThreadLocal<Boolean> recordingAllocation = new ThreadLocal<>();
 
     /**
      * Records the allocation.  This method is invoked on every allocation
@@ -79,6 +76,7 @@ public class AllocationRecorder {
      * @param newObj the new <code>Object</code> whose allocation is being
      *   recorded.
      */
+    @SuppressWarnings ("unused")
     public static void recordAllocation(int count, String desc, Object newObj) {
         if (count < 0) {
             return;
@@ -122,11 +120,9 @@ public class AllocationRecorder {
                         break;
                 }
             }
-            long result = factor * Long.parseLong(numberAsString.trim());
-            watchdogThreshold = result;
+            watchdogThreshold = factor * Long.parseLong(numberAsString.trim());
         } catch (Exception e) {
             AllocationInstrumenter.logger.log(Level.WARNING, "Illegal value of '" + numberAsStringOrig + "' for limit parameter", e);
         }
-        // !kgb
     }
 }

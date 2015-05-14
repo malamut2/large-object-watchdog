@@ -16,13 +16,6 @@
 
 package com.google.monitoring.runtime.instrumentation;
 
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.commons.LocalVariablesSorter;
-
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
@@ -32,6 +25,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.objectweb.asm.*;
+import org.objectweb.asm.commons.LocalVariablesSorter;
 
 /**
  * Instruments bytecode by inserting a specified call in the
@@ -49,8 +45,7 @@ public class ConstructorInstrumenter implements ClassFileTransformer {
   private static final Logger logger =
       Logger.getLogger(ConstructorInstrumenter.class.getName());
   private static ConcurrentHashMap<Class<?>, List<ConstructorCallback<?>>>
-      samplerMap =
-          new ConcurrentHashMap<Class<?>, List<ConstructorCallback<?>>>();
+      samplerMap = new ConcurrentHashMap<>();
 
   /**
    * We have a read-modify-write operation when doing a put in samplerMap
@@ -85,11 +80,11 @@ public class ConstructorInstrumenter implements ClassFileTransformer {
     synchronized (samplerPutAtomicityLock) {
       List<ConstructorCallback<?>> list = samplerMap.get(c);
       if (list == null) {
-        CopyOnWriteArrayList<ConstructorCallback<?>> samplerList =
-            new CopyOnWriteArrayList<ConstructorCallback<?>>();
+        CopyOnWriteArrayList<ConstructorCallback<?>> samplerList = new CopyOnWriteArrayList<>();
         samplerList.add(sampler);
         samplerMap.put(c, samplerList);
         Instrumentation inst = AllocationRecorder.getInstrumentation();
+        @SuppressWarnings ("MismatchedReadAndWriteOfArray")
         Class<?>[] cs = new Class<?>[1];
         cs[0] = c;
         inst.retransformClasses(c);
@@ -137,10 +132,7 @@ public class ConstructorInstrumenter implements ClassFileTransformer {
       cr.accept(adapter, ClassReader.SKIP_FRAMES);
 
       return vcw.toByteArray();
-    } catch (RuntimeException e) {
-      logger.log(Level.WARNING, "Failed to instrument class.", e);
-      throw e;
-    } catch (Error e) {
+    } catch (RuntimeException | Error e) {
       logger.log(Level.WARNING, "Failed to instrument class.", e);
       throw e;
     }
@@ -197,7 +189,7 @@ public class ConstructorInstrumenter implements ClassFileTransformer {
    * the class that was supposed to be tracked.
    * @param o the object passed to the samplers.
    */
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings ({"unchecked", "unused"})
   public static void invokeSamplers(Object o) {
     Class<?> currentClass = o.getClass();
     while (currentClass != null) {

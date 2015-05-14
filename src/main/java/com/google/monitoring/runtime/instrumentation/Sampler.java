@@ -41,6 +41,5 @@ public interface Sampler {
    *     recording.
    * @param size the size of the object being allocated.
    */
-  public void sampleAllocation(int count, String desc,
-      Object newObj, long size);
+  void sampleAllocation(int count, String desc, Object newObj, long size);
 }

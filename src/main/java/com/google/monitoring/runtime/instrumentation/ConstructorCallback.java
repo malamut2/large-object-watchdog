@@ -43,5 +43,5 @@ public interface ConstructorCallback<T> {
    *     subject to the memory model constraints related to such
    *     objects.
    */
-  public void sample(T newObj);
+  void sample(T newObj);
 }

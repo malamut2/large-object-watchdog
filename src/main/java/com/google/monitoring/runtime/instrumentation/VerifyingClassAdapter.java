@@ -16,14 +16,14 @@
 
 package com.google.monitoring.runtime.instrumentation;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.commons.CodeSizeEvaluator;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This is a class writer that gets used in place of the existing 
@@ -43,7 +43,7 @@ public class VerifyingClassAdapter extends ClassVisitor {
    * An enum which indicates whether the class in question is verified.
    */
   public enum State {
-    PASS, UNKNOWN, FAIL_TOO_LONG;
+    PASS, UNKNOWN, FAIL_TOO_LONG
   }
   
   final ClassWriter cw;
@@ -105,15 +105,6 @@ public class VerifyingClassAdapter extends ClassVisitor {
     }
   }
 
-  /**
-   * Gets the verification state of this class.
-   * 
-   * @return true iff the class passed inspection.
-   */
-  public boolean isVerified() {
-    return state == State.PASS;
-  }
-  
   /**
    * Returns the byte array that contains the byte code for this class.
    * 

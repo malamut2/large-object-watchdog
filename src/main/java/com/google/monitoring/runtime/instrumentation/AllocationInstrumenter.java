@@ -64,11 +64,8 @@ public class AllocationInstrumenter implements ClassFileTransformer {
       return false;
     }
     // third_party/java/webwork/*/ognl.jar contains bad class files.  Ugh.
-    if (className.startsWith("ognl/")) {
-      return false;
-    }
+    return !className.startsWith("ognl/");
 
-    return true;
   }
 
   // No instantiating me except in premain() or in {@link JarClassTransformer}.
@@ -126,6 +123,7 @@ public class AllocationInstrumenter implements ClassFileTransformer {
     if (!args.contains("manualOnly")) {
       bootstrap(inst);
     }
+
   }
 
   private static void bootstrap(Instrumentation inst) {
@@ -138,10 +136,10 @@ public class AllocationInstrumenter implements ClassFileTransformer {
 
     // Get the set of already loaded classes that can be rewritten.
     Class<?>[] classes = inst.getAllLoadedClasses();
-    ArrayList<Class<?>> classList = new ArrayList<Class<?>>();
-    for (int i = 0; i < classes.length; i++) {
-      if (inst.isModifiableClass(classes[i])) {
-        classList.add(classes[i]);
+    ArrayList<Class<?>> classList = new ArrayList<>();
+    for (Class<?> aClass : classes) {
+      if (inst.isModifiableClass(aClass)) {
+        classList.add(aClass);
       }
     }
 
@@ -198,13 +196,11 @@ public class AllocationInstrumenter implements ClassFileTransformer {
       cr.accept(adapter, ClassReader.SKIP_FRAMES);
 
       return vcw.toByteArray();
-    } catch (RuntimeException e) {
-      logger.log(Level.WARNING, "Failed to instrument class.", e);
-      throw e;
-    } catch (Error e) {
+    } catch (RuntimeException | Error e) {
       logger.log(Level.WARNING, "Failed to instrument class.", e);
       throw e;
     }
+
   }
 
 

@@ -21,7 +21,7 @@ public class WatchdogSampler implements Sampler {
         logger.log(Level.INFO, "Event #" + counter.incrementAndGet(), ev);
     }
 
-    private final int removeFromStack = 2;
+    private static final int removeFromStack = 2;
 
     private void cleanupStack(AllocationEvent ev) {
         StackTraceElement[] st = ev.getStackTrace();
