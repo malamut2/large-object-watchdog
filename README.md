@@ -7,11 +7,12 @@ uses [java.lang.instrument] with [ASM].
 
 Compared to [java-allocation-instrumenter], which offers a very general method to trace all sorts
 of object allocations, the Large Object Wachdog solves a narrow, specific task, but does so
-right out-of-the box, without adding anything to your actual code. Original code which seemed
-unnecessary in this context has been removed. Most notably, no non-array allocations are reported
-by the Large Object Watchdog because non-array objects will not really grow to any noteworthy size
-in real life. If you need to track allocations for small objects, please stick with the original
-[java-allocation-instrumenter].
+right out-of-the box, without the need to add anything to your actual code.
+
+Original code which seemed unnecessary in this context has been removed. Most notably, 
+no non-array allocations are reported by the Large Object Watchdog because non-array objects
+will not really grow to any noteworthy size in real life. If you need to track allocations
+for small objects, please stick with the original [java-allocation-instrumenter].
 
 ## How do I get it?
 
@@ -52,6 +53,6 @@ have only neglectable effects on performance otherwise.
 
 Enjoy! :)
 
-[java.lang.instrument]: http://java.sun.com/javase/6/docs/api/java/lang/instrument/package-summary.html
+[java.lang.instrument]: http://java.sun.com/javase/7/docs/api/java/lang/instrument/package-summary.html
 [ASM]: http://asm.ow2.org/
 [java-allocation-instrumenter]: https://github.com/google/allocation-instrumenter
