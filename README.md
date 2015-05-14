@@ -2,18 +2,19 @@
 ## What is this?
 
 The Large Object Watchdog is a Java agent which traces creation of all large objects.
-'Large' means there that their system-dependent net size crosses a given threshold.
+'Large' means here that their system-dependent net size crosses a given threshold.
 The Larget Object Watchdog has been forked from [java-allocation-instrumenter], which in turn
 uses [java.lang.instrument] with [ASM].
 
 Compared to [java-allocation-instrumenter], which offers a very general method to trace all sorts
 of object allocations, the Large Object Wachdog solves a narrow, specific task, but does so
-right out-of-the box, without the need to add anything to your actual code.
+right out of the box, without the need to add anything to your actual code.
 
 Original code which seemed unnecessary in this context has been removed. Most notably, 
-no non-array allocations are reported by the Large Object Watchdog because non-array objects
-will not really grow to any noteworthy size in real life. If you need to track allocations
-for small objects, please stick with the original [java-allocation-instrumenter].
+no non-array allocations are reported by the Large Object Watchdog because single non-array
+objects will not really grow to any noteworthy net size in real life. 
+If you need to track allocations for small objects, please stick with the original 
+[java-allocation-instrumenter].
 
 ## How do I get it?
 
