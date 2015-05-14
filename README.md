@@ -18,7 +18,7 @@ If you need to track allocations for small objects, please stick with the origin
 
 ## How do I get it?
 
-The code should eventually become available from Maven Central as:
+The compiled jar should eventually become available from Maven Central via:
 
 ```xml
 <dependency>
