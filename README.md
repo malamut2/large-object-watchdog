@@ -26,7 +26,7 @@ It should eventually become available from Maven Central like this:
 <dependency>
   <groupId>com.github.malamut2</groupId>
   <artifactId>large-object-watchdog</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
