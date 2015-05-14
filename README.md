@@ -1,62 +1,43 @@
 The Large Object Watchdog is a Java agent which traces creation of all objects whose net size
-cross a given threshold. It has been forked from [java-allocation-instrumenter].
+cross a given threshold. It has been forked from [java-allocation-instrumenter], which in turn
+uses [java.lang.instrument] with [ASM].
 
-This project is work-in-progress. For now, I leave the original Allocation Instrumenter Readme
-message intact. It follows here:
-
-The Allocation Instrumenter is a Java agent written using the [java.lang.instrument][] API and
-[ASM][]. Each allocation in your Java program is instrumented; a user-defined callback is invoked
-on each allocation.
+Compared to [java-allocation-instrumenter], which offers a very general method to trace all sorts
+of object allocations, the Large Object Wachdog solves a narrow, specific task, but does so
+right out-of-the box, without adding anything to your actual code. Original code which seemed
+unnecessary in this context has been removed. Most notably, no non-array allocations are reported
+by the Large Object Watchdog because non-array objects will not really grow to any noteworthy size
+in real life. If you need to track allocations for small objects, please stick with the original
+[java-allocation-instrumenter].
 
 ## How to get it
 
-The [latest release][] is available from [Maven Central][] as:
+The code should eventually become available from Maven Central as:
 
 ```xml
 <dependency>
-  <groupId>com.google.code.java-allocation-instrumenter</groupId>
-  <artifactId>java-allocation-instrumenter</artifactId>
-  <version>3.0</version>
+  <groupId>com.github.malamut2</groupId>
+  <artifactId>large-object-watchdog</artifactId>
+  <version>1.0.0</version>
 </dependency>
 ```
 
+While this is not yet the case, you'll need to clone the repository and build the jar using Maven
+on your own.
+
 ## Basic usage
 
-In order to write your own allocation tracking code, you have to implement the `Sampler` interface
-and pass an instance of that to `AllocationRecorder.addSampler()`:
+Add the jar using the `-javaagent` parameter to the java startup command line. Note that, if using
+the `-jar` parameter, the `-javaagent` parameter should preceed it. As per default, all allocations
+with an object size of 1M or more will be reported. To change that value, use the `limit` parameter,
+like here: 
 
-```java
-AllocationRecorder.addSampler(new Sampler() {
-  public void sampleAllocation(int count, String desc, Object newObj, long size) {
-    System.out.println("I just allocated the object " + newObj +   
-      " of type " + desc + " whose size is " + size);
-    if (count != -1) { System.out.println("It's an array of size " + count); }
-  }
-});
+```
+java -javaagent:/some/path/large-object-watchdog-1.0.0.jar=limit=20k -jar /some/path/yoursoftware.jar 
 ```
 
-You can also use the allocation instrumenter to instrument constructors of particular classes.
-You do this by instantiating a `ConstructorCallback` and passing it to
-`ConstructorInstrumenter.instrumentClass()`:
-
-```java
-try {
-  ConstructorInstrumenter.instrumentClass(
-      Thread.class, new ConstructorCallback<Thread>() {
-        @Override public void sample(Thread t) {
-          System.out.println("Instantiating a thread");
-        }
-      });
-} catch (UnmodifiableClassException e) {
-  System.out.println("Class cannot be modified");
-}
-```
-
-For more information on how to get or use the allocation instrumenter, see [Getting Started][].
+Enjoy! :)
 
 [java.lang.instrument]: http://java.sun.com/javase/6/docs/api/java/lang/instrument/package-summary.html
 [ASM]: http://asm.ow2.org/
-[latest release]: https://github.com/google/allocation-instrumenter/releases/tag/java-allocation-instrumenter-3.0
-[Maven Central]: http://search.maven.org/#artifactdetails%7Ccom.google.code.java-allocation-instrumenter%7Cjava-allocation-instrumenter%7C3.0%7Cjar
-[Getting Started]: https://github.com/google/allocation-instrumenter/wiki
 [java-allocation-instrumenter]: https://github.com/google/allocation-instrumenter
