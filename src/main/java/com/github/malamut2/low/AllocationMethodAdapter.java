@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.monitoring.runtime.instrumentation;
+package com.github.malamut2.low;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -81,7 +81,7 @@ class AllocationMethodAdapter extends MethodVisitor {
 
   private  List<VariableScope> getLocalScopes() {
     if (localScopes == null) {
-      localScopes = new LinkedList<VariableScope>();
+      localScopes = new LinkedList<>();
     }
     return localScopes;
   }

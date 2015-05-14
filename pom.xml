@@ -217,7 +217,7 @@
           <archive>
             <manifestEntries>
               <Boot-Class-Path>./${project.artifactId}-${project.version}.${project.packaging}</Boot-Class-Path>
-              <Premain-Class>com.google.monitoring.runtime.instrumentation.AllocationInstrumenter</Premain-Class>
+              <Premain-Class>com.github.malamut2.low.AllocationInstrumenter</Premain-Class>
               <Can-Redefine-Classes>true</Can-Redefine-Classes>
               <Can-Retransform-Classes>true</Can-Retransform-Classes>
               <Main-Class>NotSuitableAsMain</Main-Class>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.monitoring.runtime.instrumentation;
+package com.github.malamut2.low;
 
 import java.lang.instrument.Instrumentation;
 import java.util.logging.Level;
@@ -59,7 +59,7 @@ public class AllocationRecorder {
 
     private static long watchdogThreshold = 1024 * 1024;
 
-    private static final Sampler sampler= new WatchdogSampler();
+    private static final WatchdogSampler sampler = new WatchdogSampler();
 
     // Used for reentrancy checks
     private static final ThreadLocal<Boolean> recordingAllocation = new ThreadLocal<>();
@@ -125,4 +125,9 @@ public class AllocationRecorder {
             AllocationInstrumenter.logger.log(Level.WARNING, "Illegal value of '" + numberAsStringOrig + "' for limit parameter", e);
         }
     }
+
+    public static long getNumberOfLargeAllocations() {
+        return sampler.getNumberOfLargeAllocations();
+    }
+
 }

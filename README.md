@@ -1,3 +1,6 @@
+
+## What is this?
+
 The Large Object Watchdog is a Java agent which traces creation of all objects whose net size
 cross a given threshold. It has been forked from [java-allocation-instrumenter], which in turn
 uses [java.lang.instrument] with [ASM].
@@ -10,7 +13,7 @@ by the Large Object Watchdog because non-array objects will not really grow to a
 in real life. If you need to track allocations for small objects, please stick with the original
 [java-allocation-instrumenter].
 
-## How to get it
+## How do I get it?
 
 The code should eventually become available from Maven Central as:
 
@@ -25,7 +28,7 @@ The code should eventually become available from Maven Central as:
 While this is not yet the case, you'll need to clone the repository and build the jar using Maven
 on your own.
 
-## Basic usage
+## How do I use it?
 
 Add the jar using the `-javaagent` parameter to the java startup command line. Note that, if using
 the `-jar` parameter, the `-javaagent` parameter should preceed it. As per default, all allocations
@@ -35,6 +38,17 @@ like here:
 ```
 java -javaagent:/some/path/large-object-watchdog-1.0.0.jar=limit=20k -jar /some/path/yoursoftware.jar 
 ```
+
+For each allocation of a large object, you will then get a log message like this:
+
+```
+INFORMATION: Event #1
+com.github.malamut2.low.AllocationEvent: Allocated int[10000], total bytes 40016
+	at com.github.malamut2.low.TestMain.main(TestMain.java:12)
+```
+
+Using the Large Object Watchdog will slow down startup time and especially class loading, but should
+have only neglectable effects on performance otherwise.
 
 Enjoy! :)
 

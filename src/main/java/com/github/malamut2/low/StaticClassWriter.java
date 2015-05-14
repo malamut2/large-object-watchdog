@@ -36,7 +36,7 @@
 // the comments.  The original author is Eric Bruneton.
 
 
-package com.google.monitoring.runtime.instrumentation;
+package com.github.malamut2.low;
 
 import java.io.IOException;
 import java.io.InputStream;

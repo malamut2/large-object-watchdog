@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.monitoring.runtime.instrumentation;
+package com.github.malamut2.low;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
@@ -173,7 +173,7 @@ public class ConstructorInstrumenter implements ClassFileTransformer {
         super.visitVarInsn(Opcodes.ALOAD, 0);
         super.visitMethodInsn(
             Opcodes.INVOKESTATIC,
-            "com/google/monitoring/runtime/instrumentation/ConstructorInstrumenter",
+            "com/github/malamut2/low/ConstructorInstrumenter",
             "invokeSamplers",
             "(Ljava/lang/Object;)V",
             false);

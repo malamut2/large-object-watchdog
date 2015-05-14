@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.monitoring.runtime.instrumentation;
+package com.github.malamut2.low;
 
 /**
  * This interface describes a function that is used to sample a

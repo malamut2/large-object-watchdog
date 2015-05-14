@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.monitoring.runtime.instrumentation;
+package com.github.malamut2.low;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
@@ -215,7 +215,7 @@ public class AllocationInstrumenter implements ClassFileTransformer {
   public static byte[] instrument(byte[] originalBytes, ClassLoader loader) {
     return instrument(
         originalBytes,
-        "com/google/monitoring/runtime/instrumentation/AllocationRecorder",
+        "com/github/malamut2/low/AllocationRecorder",
         "recordAllocation",
         loader);
   }
