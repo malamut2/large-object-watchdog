@@ -18,7 +18,9 @@ If you need to track allocations for small objects, please stick with the origin
 
 ## How do I get it?
 
-The compiled jar should eventually become available from Maven Central via:
+You can get the compiled jar along with source code from the [Latest Release].
+
+It should eventually become available from Maven Central like this:
 
 ```xml
 <dependency>
@@ -27,9 +29,6 @@ The compiled jar should eventually become available from Maven Central via:
   <version>1.0.1</version>
 </dependency>
 ```
-
-While this is not yet the case, you'll need to clone the repository and build the jar using Maven
-on your own.
 
 ## How do I use it?
 
@@ -58,3 +57,4 @@ Enjoy! :)
 [java.lang.instrument]: http://java.sun.com/javase/7/docs/api/java/lang/instrument/package-summary.html
 [ASM]: http://asm.ow2.org/
 [java-allocation-instrumenter]: https://github.com/google/allocation-instrumenter
+[Latest Release]: https://github.com/malamut2/large-object-watchdog/releases/latest
