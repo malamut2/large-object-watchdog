@@ -83,29 +83,8 @@
     </dependency>
     <dependency>
       <groupId>org.ow2.asm</groupId>
-      <artifactId>asm-tree</artifactId>
-      <version>${projectAsmVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.ow2.asm</groupId>
       <artifactId>asm-util</artifactId>
       <version>${projectAsmVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.ow2.asm</groupId>
-      <artifactId>asm-xml</artifactId>
-      <version>${projectAsmVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>18.0</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.2</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -196,8 +175,6 @@
                 <include>org.ow2.asm:asm-commons</include>
                 <include>org.ow2.asm:asm-tree</include>
                 <include>org.ow2.asm:asm-util</include>
-                <include>org.ow2.asm:asm-xml</include>
-                <include>com.google.guava:guava</include>
               </includes>
               <rules>
                 <keep>
