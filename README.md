@@ -24,7 +24,7 @@ The compiled jar should eventually become available from Maven Central via:
 <dependency>
   <groupId>com.github.malamut2</groupId>
   <artifactId>large-object-watchdog</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
