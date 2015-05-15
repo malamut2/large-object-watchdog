@@ -29,7 +29,7 @@
   <groupId>com.github.malamut2</groupId>
   <artifactId>large-object-watchdog</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.3-SNAPSHOT</version>
+  <version>1.0.3</version>
 
   <name>large-object-watchdog</name>
   <description>
