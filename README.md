@@ -39,7 +39,7 @@ with an object size of 1M or more will be reported. To change that value, use th
 like here: 
 
 ```
-java -javaagent:/some/path/large-object-watchdog-1.0.0.jar=limit=20k -jar /some/path/yoursoftware.jar 
+java -javaagent:/some/path/large-object-watchdog-1.0.3.jar=limit=20k -jar /some/path/yoursoftware.jar 
 ```
 
 For each allocation of a large object, you will then get a log message like this:
