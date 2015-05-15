@@ -20,7 +20,8 @@ If you need to track allocations for small objects, please stick with the origin
 
 You can get the compiled jar along with source code from the [Latest Release].
 
-It should eventually become available from Maven Central like this:
+A few hours after appearing here, the lastest release will also be available on
+Maven Central:
 
 ```xml
 <dependency>
